@@ -20,7 +20,15 @@ namespace WindowsService
             // Set up a timer to trigger every minute.  
             Timer timer = new Timer();
             var interval = ConfigurationManager.AppSettings["interval"];
-            timer.Interval = int.Parse(interval); // 60 seconds  
+            if (!string.IsNullOrWhiteSpace(interval))
+            {
+                timer.Interval = int.Parse(interval);
+            }
+            else
+            {
+                timer.Interval = 120000; // 2min
+            }
+
             timer.Elapsed += new ElapsedEventHandler(this.OnTimer);
             timer.Start();
             log.Info("Started");
@@ -29,8 +37,8 @@ namespace WindowsService
         public void OnTimer(object sender, ElapsedEventArgs args)
         {
             // do anything here, for example log something
-             
-            
+
+
             var urls = ConfigurationManager.AppSettings["urls"];
 
             if (!string.IsNullOrWhiteSpace(urls))
