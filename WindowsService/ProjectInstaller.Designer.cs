@@ -39,7 +39,9 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.ServiceName = "AutoPingService";
+            this.serviceInstaller1.ServiceName = "Keep IIS Alive";
+            this.serviceInstaller1.Description = "Auto Ping Service to keep IIS Alive";
+
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
@@ -49,7 +51,7 @@
             this.serviceInstaller1});
 
         }
-
+        
         #endregion
 
         private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;

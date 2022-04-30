@@ -15,24 +15,5 @@ namespace WindowsService
         {
             InitializeComponent();
         }
-
-        public override void Install(IDictionary stateSaver)
-        {
-            serviceInstaller1.ServiceName = Configuration.GetInstanceName(GetAssemblyPath());
-            serviceInstaller1.DisplayName = serviceInstaller1.ServiceName;
-            base.Install(stateSaver);
-        }
-
-        protected override void OnBeforeUninstall(IDictionary savedState)
-        {
-            serviceInstaller1.ServiceName = Configuration.GetInstanceName(GetAssemblyPath());
-            base.OnBeforeUninstall(savedState);
-        }
-
-        private string GetAssemblyPath()
-        {
-            var mypath = this.Context.Parameters["assemblypath"];
-            return mypath;
-        }
     }
 }
